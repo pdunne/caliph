@@ -6,9 +6,9 @@ import sys
 
 
 def calib_cli(ph4, ph10, temperature=25, save=False):
-    """Calculates calibration curve y = m*x + c for two point
-    pH calibration. Assumes pH 4.01 and pH 10.01 buffer solutions are used
+    """Calculates calibration curve for a two point pH calibration.
 
+    Note: Assumes pH 4.01 and pH 10.01 buffer solutions are used, and the calibration curve is of the form y = m*x + c where [m, c] is returned.
 
     Args:
         ph4 (float): pH measured for pH 4.01 buffer solution
@@ -30,15 +30,18 @@ def calib():
     fire.Fire(calib_cli)
 
 
-def convert_cli(ph, file=True, calibration=None):
-    """Converts a measured pH to a calibrated value
+def convert_cli(ph, file=True, slope=None, offset=None):
+    """Converts a measured pH to a calibrated value.
+
+    Note: Both slope and offset must be set if the calib.dat file is not being used
 
     Args:
         ph (array/float): Array or single pH measurement
         file (bool, optional): Reads calib.dat in current folder to get calibration constants. Defaults to True.
-        calibration (array, optional): Slope and offset calibration constants. Defaults to None.
+        slope (float, optional): Slope correction. Defaults to None.
+        offset (float, optional): Offset correction. Defaults to None.
     """
-    if file:
+    if file and (slope is None and offset is None):
         try:
             calibration = loadtxt("./calib.dat", delimiter="\t")
         except FileNotFoundError:
@@ -52,12 +55,14 @@ def convert_cli(ph, file=True, calibration=None):
             print(f"Unexpected error opening calib.dat is", repr(err))
             sys.exit(1)
 
-    elif calibration is None:
+    elif slope is None or offset is None:
         print(
             "Error either calib.dat is used or calibration array [slope, offset] must be passed as an argument"
         )
         sys.exit(1)
 
+    else:
+        calibration = [slope, offset]
     ph_calib = pH_convert(ph, calibration)
 
     print(f"Calibrated pH: {ph_calib}\ncalibration is {calibration}")
