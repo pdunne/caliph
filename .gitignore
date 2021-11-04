@@ -132,3 +132,5 @@ dmypy.json
 conda_pkgs/
 
 .vscode/
+
+calib.dat
