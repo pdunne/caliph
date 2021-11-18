@@ -9,4 +9,4 @@ The two command line tools are `calibrate-ph`, and '`convert-ph`.
 
 Written as a simple excerise to use `poetry`
 
-THe rust version is preferred: [caliph-rs](https://github.com/pdunne/caliph-rs)
+The rust version is preferred: [caliph-rs](https://github.com/pdunne/caliph-rs)
