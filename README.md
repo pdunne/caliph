@@ -6,3 +6,7 @@ A simple tool to calibrate and convert pH measurements using a two point method.
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 The two command line tools are `calibrate-ph`, and '`convert-ph`.
+
+Written as a simple excerise to use `poetry`
+
+THe rust version is preferred: [caliph-rs](https://github.com/pdunne/caliph-rs)
