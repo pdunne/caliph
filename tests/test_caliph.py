@@ -1,11 +1,13 @@
-from caliph import __version__, routines
-from caliph.cli import calib, conv
+# from caliph.cli import calib, conv
 import numpy as np
-import fire
+
+from caliph import __version__, routines
+
+# import fire
 
 
 def test_version():
-    assert __version__ == "0.2.0"
+    assert __version__ == "0.2.1"
 
 
 def test_calib():
